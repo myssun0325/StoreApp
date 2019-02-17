@@ -1,3 +1,14 @@
+# Key Experience
+
+- 주요 이슈 : 테이블뷰에 보여질 데이터를 다운로드할 때 셀의 데이터를 섹션단위로 비동기 방식으로 받아오고 데이터를 섹션 단위로 받아올 때, 전체 UI를 업데이트(reloadData)하는 것이 아니라 데이터가 변경된 섹션만 업데이트하도록(reloadSection) 처리하려하지만 UI 업데이트 도중 데이터 변경(아직 다운받고 있는 데이터가 존재)으로 인해 TableView의 SectionUpdate의 sync 문제가 생김.
+- 해결 방법 : SerialQueue를 만들어서 도착한 데이터를 큐에 담아두고 task의 단위를 UI업데이트까지(해당 섹션만) 처리. (다운로드 된 데이터와 보여지는 데이터의 동기 작업 처리 성공)  
+
+- StoreAPI : 외부URL로 부터 데이터를 받아오고(timeout: 3sec) 실패시 미리 저장해둔 파일로부터 데이터를 읽어서 테이블뷰에 표시
+
+- 디바이스의 네트워크 상태 확인을 위해 Alamofire의 Reachability를 사용하고, 네트워크 변경에 따라 데이터를 다시 요청하도록 구현.
+
+- 첫 화면의 썸네일 이미지를 디스크캐싱처리하여 최초 한번만 이미지를 다운받고 이후에는 네트워크 비용을 줄이기 위해 디스크에 저장된 이미지를 불러온다.(FileManager, user library의 cacheDirectory 사용)
+
 # Step. 1
 - 완성날짜: 2018년 8월 13일
 
@@ -9,7 +20,7 @@
 # Step. 2
 - 완성날짜: 2018년 8월 14일
 
-<img src="images/step2_8.png" width="50%"> 
+<img src="images/step2_8.png" width="50%">
 <img src="images/step2_x.png" width="50%"> 
 <img src="images/step2_plus.png" width="50%"> 
 
@@ -56,9 +67,7 @@
 # Step. 6
 - 완성날짜: 2018년 8월 24일
 
-<img src="images/step6_demo.gif" width="50%">
-
-<img src="images/step6_error_demo.png" width="50%">
+<img src="images/step6_demo.gif" width="50%"><img src="images/step6_error_demo.png" width="50%">
 
 - Keyword
 	- DispatchQueue.main, UI update, Concurrency Programming Guide, URLSession, URLSessionDownloadTask, FileManager, Caching, OperationQueue, 이미지 다운로드 시 GCD와 downloadTask의 차이
@@ -82,6 +91,4 @@
 	
 # Step. 8
 
-<img src="images/step8_demo1.png" width="50%">
-
-<img src="images/step8_demo2.png" width="50%">
+<img src="images/step8_demo1.png" width="50%"><img src="images/step8_demo2.png" width="50%">
