@@ -91,5 +91,6 @@
 	- "데이터는 어떻게 넘어올지 모른다."에 대응하기
 	
 # Step. 8
+- Rechability를 통해 네트워크의 연결과 끊김에 대해 화면 테두리의 색상으로 구분하도록 구현
 
 <img src="images/step8_demo1.png" width="50%"><img src="images/step8_demo2.png" width="50%">
